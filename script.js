@@ -5,12 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (menuBtn && navLinks) {
         menuBtn.addEventListener('click', () => {
-            // Alterna a classe 'active' no botão (para animar o X) e no menu (para deslizar)
             menuBtn.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
 
-        // Fecha o menu ao clicar em qualquer link (importante para mobile)
         const links = document.querySelectorAll('.nav-links a');
         links.forEach(link => {
             link.addEventListener('click', () => {
@@ -43,8 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // Offset para não cobrir o título com o header fixo
-                    const headerOffset = 70;
+                    const headerOffset = 80;
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
