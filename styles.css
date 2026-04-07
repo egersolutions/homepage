@@ -1,0 +1,259 @@
+:root {
+    --bg: #010E26;
+    --text: #FDFDFD;
+    --primary: #074FB3;
+    --accent: #1496D5;
+    --surface: #1D4065;
+    --muted: #878E9C;
+    --wa-green: #25D366;
+    --transition: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background-color: rgba(1, 14, 38, 0.95);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--surface);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 45px;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* Hero */
+.hero {
+    padding: 100px 0;
+    background: radial-gradient(circle at top right, var(--surface), var(--bg));
+    text-align: center;
+}
+
+.badge {
+    background: var(--primary);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 20px 0;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--muted);
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Botões */
+.btn {
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition);
+    cursor: pointer;
+    display: inline-block;
+    border: none;
+}
+
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+
+.btn-secondary { border: 2px solid var(--surface); color: white; }
+.btn-secondary:hover { background: var(--surface); }
+
+/* Serviços */
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.2rem;
+}
+
+.services { padding: 80px 0; }
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background: var(--surface);
+    padding: 40px 30px;
+    border-radius: 12px;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.service-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-10px);
+}
+
+.service-card .icon { font-size: 2.5rem; margin-bottom: 20px; }
+
+/* Networks */
+.section-dark { background: #021533; padding: 80px 0; }
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.check-list { list-style: none; margin-top: 20px; }
+.check-list li::before {
+    content: "✓";
+    color: var(--accent);
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.tech-graphic {
+    font-size: 10rem;
+    text-align: center;
+    opacity: 0.3;
+}
+
+/* Como Funciona */
+.how-it-works { padding: 80px 0; }
+.steps {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.step { flex: 1; text-align: center; }
+.step-num {
+    background: var(--accent);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    font-weight: bold;
+}
+
+/* Contato */
+.contact-card {
+    background: var(--surface);
+    padding: 50px;
+    border-radius: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mini-form { margin: 30px 0; display: grid; gap: 15px; }
+.mini-form input, .mini-form textarea {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid var(--muted);
+    background: var(--bg);
+    color: white;
+}
+
+.btn-full { width: 100%; }
+
+/* Footer */
+.footer {
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid var(--surface);
+    color: var(--muted);
+}
+
+/* Floating Buttons */
+.floating-ctas {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 2000;
+}
+
+.f-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: var(--transition);
+}
+
+.f-wa { background: var(--wa-green); }
+.f-insta { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+
+.f-btn:hover { transform: scale(1.1); }
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    .nav-links { display: none; } /* Simplificação: menu burger requereria mais JS */
+    .grid-2, .steps { grid-template-columns: 1fr; flex-direction: column; }
+    .hero-btns { flex-direction: column; }
+}
