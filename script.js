@@ -1,53 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Lógica para o formulário de contato via WhatsApp
+    // 1. Lógica do Menu Mobile (Hambúrguer)
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            // Alterna a classe 'active' no botão (para animar o X) e no menu (para deslizar)
+            menuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Fecha o menu ao clicar em qualquer link (importante para mobile)
+        const links = document.querySelectorAll('.nav-links a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+
+    // 2. Lógica do Formulário de Contato -> WhatsApp
     const waForm = document.getElementById('wa-form');
-    
     if (waForm) {
         waForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
             const name = document.getElementById('form-name').value;
             const problem = document.getElementById('form-problem').value;
             const phone = "5549999417778";
             
-            // Monta a mensagem para URL
-            const baseMsg = `Olá! Meu nome é ${name}. Gostaria de um orçamento para: ${problem}. Sou de Caçador/SC.`;
-            const encodedMsg = encodeURIComponent(baseMsg);
-            
-            const waUrl = `https://wa.me/${phone}?text=${encodedMsg}`;
-            
-            // Abre em nova aba
-            window.open(waUrl, '_blank');
+            const message = `Olá! Meu nome é ${name}. Gostaria de um orçamento para: ${problem}. Sou de Caçador/SC.`;
+            const encodedMsg = encodeURIComponent(message);
+            window.open(`https://wa.me/${phone}?text=${encodedMsg}`, '_blank');
         });
     }
 
-    // Scroll Suave para links internos
+    // 3. Scroll Suave para âncoras
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
+            const targetId = this.getAttribute('href');
+            if (targetId !== "#") {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Offset para não cobrir o título com o header fixo
+                    const headerOffset = 70;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
             }
         });
     });
-
-    // Mobile Menu Toggle (Básico)
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '70px';
-            navLinks.style.left = '0';
-            navLinks.style.width = '100%';
-            navLinks.style.backgroundColor = 'var(--bg)';
-            navLinks.style.padding = '20px';
-        });
-    }
 });
