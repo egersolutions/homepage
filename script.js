@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Lógica do Menu Mobile (Hambúrguer)
+    
+    // 1. Lógica do Menu Mobile
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
 
@@ -18,7 +19,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Lógica do Formulário de Contato -> WhatsApp
+    // 2. Lógica de Animação ao Rolar (Intersection Observer)
+    // Esta é a parte que faz o site parecer "vivo"
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Uma vez que animou, paramos de observar esse elemento para poupar performance
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15 // Dispara quando 15% do elemento estiver visível
+    });
+
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // 3. Lógica do Formulário de Contato
     const waForm = document.getElementById('wa-form');
     if (waForm) {
         waForm.addEventListener('submit', (e) => {
@@ -33,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Scroll Suave para âncoras
+    // 4. Scroll Suave
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
